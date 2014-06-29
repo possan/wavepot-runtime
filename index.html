@@ -1,0 +1,38 @@
+<html>
+<head>
+<script src="wavepot-runtime.js"></script>
+</head>
+<body>
+<p>
+<button id="play">PLAY</button>
+<button id="stop">STOP</button>
+<button id="reset">RESET</button>
+</p>
+<textarea id="source" style="width:100%;height:300px;">function dsp(t) { return 0.1 * Math.sin(2 * Math.PI * t * 440); }</textarea>
+<script>
+
+var rt = new WavepotRuntime();
+
+var sourceelement = document.getElementById('source');
+
+rt.compile(sourceelement.value);
+
+sourceelement.addEventListener('change', function() {
+	rt.compile(sourceelement.value);
+})
+
+document.getElementById('play').addEventListener('click', function() {
+	rt.play();
+});
+
+document.getElementById('stop').addEventListener('click', function() {
+	rt.stop();
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+	rt.reset();
+});
+
+</script>
+</body>
+</html>
